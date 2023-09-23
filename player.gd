@@ -1,24 +1,21 @@
 extends RigidBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+@export var force = 1500
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
-func _input(event):
-	if Input.is_anything_pressed() == null:
-		Vector2()
+func  _physics_process(delta):
+	#add(var_2)
+	if Input == null:
 		return
-	if Input.is_key_pressed(KEY_D):
-		apply_impulse(Vector2(1, 0))
-	if Input.is_key_pressed(KEY_A):
-		apply_impulse(Vector2(-1, 0))
-	if Input.is_key_pressed(KEY_W):
-		apply_impulse(Vector2(0, -1))
-	if Input.is_key_pressed(KEY_S):
-		apply_impulse(Vector2(0, 1))
+	if Input.is_action_pressed("move_right"):
+		apply_force(Vector2(force, 0))
+	if Input.is_action_pressed("move_left"):
+		apply_force(Vector2(-force, 0))
+	if Input.is_action_pressed("move_up"):
+		apply_force(Vector2(0, -force))
+	if Input.is_action_pressed("move_down"):
+		apply_force(Vector2(0, force))
+func add(num1):
+	force += num1
 
